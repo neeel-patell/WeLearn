@@ -15,7 +15,7 @@
             echo json_encode(array("error"=>array("message"=>"You are disabled by admin")));
         }
         else{
-            echo json_encode(array("data"=>array("user_type"=>$row['user_type'])));
+            echo json_encode(array("data"=>array("user_type"=>$row['user_type'],"id"=>$row['id'])));
         }
     }
     else{
