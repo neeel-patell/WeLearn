@@ -11,6 +11,7 @@
     $medium = $_POST['medium'];
     $address = $_POST['address'];
     $date_of_birth = $_POST['date_of_birth'];
+    $date_of_birth = str_replace("/","-",$date_of_birth);
     $password = $_POST['password'];
     $user_type = $_POST['user_type'];
     
