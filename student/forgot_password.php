@@ -13,7 +13,7 @@
     if(mysqli_num_rows($result) != 0){
         $row = $result->fetch_array();
         $password = getRandom();
-        $query = "update login set password='$password' where id=".$row['id'];
+        $query = "update login set password='".hash('sha256',$password)."' where id=".$row['id'];
         if($conn->query($query) == true){
             $body = "Your new Password is $password for login and Make sure you change it if you want from your profile settings";
             sendMail($email,"New Password for login",$body);
