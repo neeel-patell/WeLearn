@@ -1,16 +1,20 @@
+#sidebar.active {
+    margin-left: -250px;
+}
 #sidebar{
 	min-width: 250px;
 	max-width: 250px;
 	transition: all 0.3s;
+	margin-left: 0px;
 }
 #sidebarCollapse{
     display: none;
 }
 @media (max-width: 768px) {
     #sidebar {
-		min-width: 200px;
-		max-width: 2000px;
-        margin-left: -200px;
+		min-width: 100%;
+		max-width: 100%;
+        margin-left: -100%;
     }
     #sidebar.active {
         margin-left: 0;
