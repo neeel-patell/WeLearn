@@ -5,12 +5,12 @@
     </div>
     <ul class="navbar-nav flex-column text-center mt-3" style="font-weight: 500">
         <li class="nav-item dropdown border-top p-2">
-            <a class="dropdown-toggle nav-link p-0" data-toggle="collapse" data-target="#state_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Manage State
+            <a class="dropdown-toggle nav-link p-0" data-toggle="collapse" data-target="#video_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Manage Video
             </a>
-            <div class="collapse p-2" id="state_collapse">
-                <a class="nav-link" href="add_state.php">Add State</a>
-                <a class="nav-link" href="view_state.php">View State</a>
+            <div class="collapse p-2" id="video_collapse">
+                <a class="nav-link" href="add_video.php">Add Video</a>
+                <a class="nav-link" href="view_Video.php">View Video</a>
             </div>
         </li>
         <li class="nav-item dropdown border-top p-2">

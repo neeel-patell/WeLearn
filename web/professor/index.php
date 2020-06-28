@@ -12,7 +12,7 @@
         </div>
         <div class="d-flex p-0" style="min-height: 80vh;">
             <?php include_once 'sidebar.php' ?>
-            <div class="container-fluid p-0" id="content" style="display :block;">
+            <div class="container-fluid p-0" id="content">
                 
             </div>
         </div>

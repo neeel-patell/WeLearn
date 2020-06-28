@@ -10,7 +10,7 @@
             </a>
             <div class="collapse p-2" id="professor_collapse">
                 <a class="nav-link" href="add_professor.php">Add Professor</a>
-                <a class="nav-link" href="view_state.php">View Professor</a>
+                <a class="nav-link" href="view_professor.php">View Professor</a>
             </div>
         </li>
         <li class="nav-item border-top">
