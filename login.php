@@ -15,7 +15,19 @@
             echo json_encode(array("error"=>array("message"=>"You are disabled by admin")));
         }
         else{
-            echo json_encode(array("data"=>array("user_type"=>$row['user_type'],"id"=>$row['id'],"first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"class"=>$row['class_id'])));
+            if($row['user_type'] != 2){
+                echo json_encode(array("data"=>array("user_type"=>$row['user_type'],"id"=>$row['id'],"first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"class"=>$row['class_id'])));
+            }
+            else{
+                $class = $conn->query("select active from class where id=".$row['class_id']);
+                $class = $class->fetch_array();
+                if($class['active'] == 0){
+                    echo json_encode(array("error"=>array("message"=>"Your class is temporary disabled by admin")));
+                }
+                else{
+                    echo json_encode(array("data"=>array("user_type"=>$row['user_type'],"id"=>$row['id'],"first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"class"=>$row['class_id'])));
+                }
+            }
         }
     }
     else{
