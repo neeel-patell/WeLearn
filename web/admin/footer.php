@@ -11,12 +11,6 @@
     $(document).ready(function () {
         $('#sidebarCollapse').on('click', function () {
             $('#sidebar').toggleClass('active');
-            if($('#content').attr('style') === "display :block;"){
-                $('#content').attr('style',"display :none;");
-            }
-            else{
-                $('#content').attr('style',"display :block;");
-            }
         });
     });
 </script>

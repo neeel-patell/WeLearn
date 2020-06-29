@@ -4,6 +4,9 @@
         <h6 class="mt-3"><?php echo $fullname; ?></h6>
     </div>
     <ul class="navbar-nav flex-column text-center mt-3" style="font-weight: 500">
+        <li class="nav-item border-top">
+            <a href="index.php" class="nav-link text-info">Home <i class="fas fa-home"></i></a>
+        </li>
         <li class="nav-item dropdown border-top p-2">
             <a class="dropdown-toggle nav-link p-0" data-toggle="collapse" data-target="#video_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
                 Manage Video

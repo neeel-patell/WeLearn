@@ -4,6 +4,15 @@
         <h6 class="mt-3"><?php echo $fullname; ?></h6>
     </div>
     <ul class="navbar-nav flex-column text-center mt-3" style="font-weight: 500">
+        <li class="nav-item border-top">
+            <a href="index.php" class="nav-link text-secondary">Home <i class="fas fa-home"></i></a>
+        </li>
+        <li class="nav-item border-top">
+            <a href="show_medium.php" class="nav-link text-info">View Medium <i class="far fa-address-card"></i></a>
+        </li>
+        <li class="nav-item border-top">
+            <a href="view_class.php" class="nav-link text-info">View Class <i class="fas fa-chalkboard"></i></a>
+        </li>
         <li class="nav-item dropdown border-top p-2">
             <a class="dropdown-toggle nav-link text-primary p-0" data-toggle="collapse" data-target="#professor_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
                 Manage Professor

@@ -9,8 +9,8 @@
         <?php include_once 'css_files.php' ?>
     </head>
     <body>
-        <div class="bg-dark container-fluid p-3 pl-5" style="min-height: 10vh;">
-            <h4 class="text-white"><i class="fas fa-tachometer-alt"></i> Admin - Dashboard</h4>
+        <div class="bg-warning container-fluid p-3 pl-5" style="min-height: 10vh;">
+            <h4 class="text-dark">Admin - View Professor <i class="fas fa-chalkboard-teacher"></i> </h4>
             <button type="button" id="sidebarCollapse"  class="btn btn-outline-light mr-2 mt-2"><i class="fas fa-grip-lines"></i></button>
         </div>
         <div class="d-flex p-0" style="min-height: 80vh;">
@@ -41,7 +41,7 @@
                                 <td><?php echo $class['name']." - ".$medium['name']; ?></td>
                                 <td><a href="tel:<?php echo $row['mobile']; ?>"><?php echo $row['mobile']; ?></a></td>
                                 <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['email']; ?></a></td>
-                                <td><?php  ?></td>
+                                <td></td>
                             </tr>
                             <?php } ?>
                         
