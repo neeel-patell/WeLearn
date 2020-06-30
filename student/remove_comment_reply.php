@@ -4,14 +4,11 @@
     $conn = getConn();
     $data = array();
 
-    $comment = $_POST['comment'];
-    $description = $_POST['description'];
-
-    $query = 'UPDATE video_comment SET
-              `description`="'.$description.'"
-              where id='.$comment;
+    $reply = $_POST['reply'];
+    
+    $query = "delete from comment_reply where id=$reply";
     if($conn->query($query) == true){
-        array_push($data,array("message"=>"Comment Updated"));
+        array_push($data,array("message"=>"Reply deleted"));
     }
     else{
         array_push($data,array("message"=>"Something went wrong"));

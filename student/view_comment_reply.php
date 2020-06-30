@@ -4,8 +4,8 @@
     $conn = getConn();
     $data = array();
 
-    $video = $_POST['video'];
-    $query = "SELECT id,`description`,user_id from video_comment where video_id=$video";
+    $comment = $_POST['comment'];
+    $query = "SELECT id,`description`,user_id from comment_reply where comment_id=$comment";
     $result = $conn->query($query);
 
     while($row = $result->fetch_array()){
