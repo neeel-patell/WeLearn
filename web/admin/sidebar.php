@@ -13,16 +13,23 @@
         <li class="nav-item border-top">
             <a href="view_class.php" class="nav-link text-info">View Class <i class="fas fa-chalkboard"></i></a>
         </li>
-        <li class="nav-item border-top">
-            <a href="view_subject.php" class="nav-link text-info">View Subject <i class="fas fa-book"></i></a>
+        <li class="nav-item dropdown border-top p-2">
+            <a class="dropdown-toggle nav-link text-primary p-0" data-toggle="collapse" data-target="#subject_collapse" role="button" aria-expanded="false">
+                Manage Subject <i class="fas fa-book"></i>
+            </a>
+            <div class="collapse p-2" id="subject_collapse">
+                <a class="nav-link" href="view_subject.php">View Subject</a>
+                <a class="nav-link" href="associate_subject.php">Associate Subject</a>
+            </div>
         </li>
         <li class="nav-item dropdown border-top p-2">
-            <a class="dropdown-toggle nav-link text-primary p-0" data-toggle="collapse" data-target="#professor_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="dropdown-toggle nav-link text-primary p-0" data-toggle="collapse" data-target="#professor_collapse" role="button" aria-expanded="false">
                 Manage Professor
             </a>
             <div class="collapse p-2" id="professor_collapse">
                 <a class="nav-link" href="add_professor.php">Add Professor</a>
                 <a class="nav-link" href="view_professor.php">View Professor</a>
+                <a class="nav-link" href="associate_professor.php">Associate Professor</a>
             </div>
         </li>
         <li class="nav-item border-top">

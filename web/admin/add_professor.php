@@ -1,7 +1,6 @@
 <?php
     $msg = 0;
     include_once 'validate_admin.php'; 
-    $medium = $conn->query("select id,name from medium");
     if(isset($_GET['msg'])){
         $msg = $_GET['msg'];
     }
@@ -77,23 +76,6 @@
                             <input type="date" name="dob" id="dob" data-parsley-error-message="Professor must be 16 years older" placeholder="DD/MM/YYYY" class="form-control" required>
                         </div>
                         <div class="form-group mt-3">
-                            <label class="label">Medium: <span class="text-danger">*</span></label>
-                            <select name="medium" id="medium" class="form-control" required>
-                                <option value="">- - - Select Medium associated to Professor</option>
-                                
-                                <?php while($row = $medium->fetch_array()){ ?>
-                                <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
-                                <?php } ?>
-                            
-                            </select>
-                        </div>
-                        <div class="form-group mt-3">
-                            <label class="label">Class: <span class="text-danger">*</span></label>
-                            <select name="class" id="class" class="form-control" required>
-                                <option value="">- - - Select Meduim first - - -</option>
-                            </select>
-                        </div>
-                        <div class="form-group mt-3">
                             <label class="label">Image: <span class="text-danger">*</span></label>
                             <input type="file" name="image" id="image" class="form-control" accept="image/*" required>
                         </div>
@@ -119,18 +101,6 @@
             } 
             today = yyyy+'-'+mm+'-'+dd;
             document.getElementById("dob").setAttribute("max", today);
-            $('#medium').change(function(){
-                var medium = $("#medium").val();
-                $.ajax({
-                    type: 'POST',
-                    url: "get_class.php",
-                    data: {medium:medium},
-                    dataType: "html",
-                    success: function(data) {
-                        $("#class").html(data);
-                    }
-                });
-            });
             $('#show_pass').click(function(){
                 if($('#pass').attr('type') === "password"){
                     $('#pass').attr('type','text');

@@ -6,8 +6,8 @@
     $mobile = $_POST['mobile'];
     $email = $_POST['email'];
     $gender = $_POST['gender'];
-    $class = $_POST['class'];
-    $medium = $_POST['medium'];
+    $class = 0;
+    $medium = 0;
     $address = $_POST['address'];
     $date_of_birth = $_POST['dob'];
     $date_of_birth = str_replace("/","-",$date_of_birth);
