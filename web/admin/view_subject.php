@@ -1,6 +1,6 @@
 <?php
     include_once 'validate_admin.php';
-    $medium = $conn->query("select id,name from medium");
+    $subject = $conn->query("select id,name from subject");
     $msg = "";
     if(isset($_GET['msg'])){
         $msg = $_GET['msg'];
@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="bg-dark container-fluid p-3 pl-5" style="min-height: 10vh;">
-            <h4 class="text-white">Admin - View Class <i class="fas fa-chalkboard"></i></h4>
+            <h4 class="text-white">Admin - View Subject <i class="fas fa-book"></i></h4>
             <button type="button" id="sidebarCollapse"  class="btn btn-outline-light mr-2 mt-2"><i class="fas fa-grip-lines"></i></button>
         </div>
         <div class="d-flex p-0" style="min-height: 80vh;">
@@ -25,40 +25,16 @@
                     <div class="alert alert-primary h6"><?php echo $msg; ?></div>
                 <?php } ?>
                 
-                <form class="card border-success p-3 mb-3" method="post" action="insert_class.php" data-parsley-validate>
-                    <h5 class="text-danger">Add Class</h5>
-                    <div class="form-group mt-2">
-                        <label class="label mt-4">Medium Name: <span class="text-danger">*</span></label>
-                        <select name="medium" class="form-control" id="medium" required>
-                            <option value="">- - - Select Medium - - -</option>
-                            <?php while($row = $medium->fetch_array()){ ?>
-                            <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="form-group mt-2">
-                        <label class="label">Class Name: <span class="text-danger">*</span></label>
-                        <input type="text" name="class" placeholder="Enter Class Name to add to selected medium" class="form-control" id="class" maxlength="20" required>
-                    </div>
-                    <div class="container w-50 mt-2">
-                        <input type="submit" value="Add Class" class="form-control btn-success">
+                <form class="card border-success p-3 mb-3" method="post" action="insert_subject.php" data-parsley-validate>
+                    <h5 class="text-danger">Add Subject</h5>
+                    <label class="label mt-4">Subject Name: <span class="text-danger">*</span></label>
+                    <div class="clearfix">
+                        <input type="text" name="subject" class="form-control mb-3" id="subject" Placeholder="Enter Subject Name" data-parsley-pattern="^[a-zA-Z ]+$" data-parsley-error-message="Name doesn't contain numbers" required maxlength="30">
+                        <input type="submit" class="btn btn-success" value="Add Subject">
                     </div>
                 </form>
                 <div class="table-responsive mt-4 card p-3">
-                    <div class="clearfix">
-                        <h4 class="text-danger float-left w-50"><u>Available Class List</u></h4>
-                        <div class="float-right w-50">
-                            <select class="form-control mt-3 mb-3" id="medium_drop" required>
-                                <option value="">- - - Select Medium to see it's classes - - -</option>
-                                <?php
-                                    mysqli_data_seek($medium,0);
-                                    while($row = $medium->fetch_array()){ 
-                                ?>
-                                <option value='<?php echo $row['id']; ?>'><?php echo $row['name']; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
+                    <h4 class="text-danger mb-3"><u>Available Subject List</u></h4>
                     <table class="table table-hover text-center table-bordered">
                         <thead class="thead-light">
                             <tr>
@@ -68,6 +44,17 @@
                             </tr>
                         </thead>
                         <tbody id="class_table">
+                            
+                            <?php $sr=1; while($row = $subject->fetch_array()){ ?>
+                            <tr>
+                                <td><?php echo $sr++; ?></td>
+                                <td><?php echo $row['name']; ?></td>
+                                <td>
+                                    <button class="btn btn-link p-0" onclick='if(confirm("Do you want to remove <?php echo $row['name']; ?> ?") == true){location.href="remove_subject.php?id=<?php echo $row['id'] ?>"}'>Remove</button> / 
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        
                         </tbody>
                     </table>
                 </div>

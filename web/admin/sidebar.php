@@ -13,6 +13,9 @@
         <li class="nav-item border-top">
             <a href="view_class.php" class="nav-link text-info">View Class <i class="fas fa-chalkboard"></i></a>
         </li>
+        <li class="nav-item border-top">
+            <a href="view_subject.php" class="nav-link text-info">View Subject <i class="fas fa-book"></i></a>
+        </li>
         <li class="nav-item dropdown border-top p-2">
             <a class="dropdown-toggle nav-link text-primary p-0" data-toggle="collapse" data-target="#professor_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
                 Manage Professor
