@@ -21,7 +21,7 @@
         <div class="d-flex p-0 m-0" style="min-height: 80vh;">
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-0 m-0" id="content" style="display :block;">
-                <h5 class="bg-primary p-3 text-white text-center">Associate Professor</h5>
+                <h5 class="bg-primary p-3 text-white text-center">Associate Subject to Professor</h5>
                 <div class="container w-75">
 
                     <?php if($msg != ""){ ?>
@@ -64,7 +64,7 @@
                             </select>
                         </div>
                         <div class="container w-50 mt-2">
-                            <input type="submit" value="Associate Professor" class="form-control btn-success">
+                            <input type="submit" value="Associate to Professor" class="form-control btn-success">
                         </div>
                     </form>
                 </div>

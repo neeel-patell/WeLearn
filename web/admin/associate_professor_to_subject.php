@@ -2,15 +2,20 @@
     require "../../connection.php";
     $conn = getConn();
 
-    $medium = $_POST['medium'];
     $class = $_POST['class'];
     $subject = $_POST['subject'];
+    $professor = $_POST['professor'];
 
-    $query = "INSERT INTO class_subject(class_id,subject_id) VALUES($class,$subject)";
+    $query = "SELECT id from class_subject where class_id=$class and subject_id=$subject";
+    echo $query;
+    $result = $conn->query($query);
+    $result = $result->fetch_array();
+    $subject = $result['id'];
+    $query = "INSERT INTO subject_professor(subject_id,login_id) VALUES($subject,$professor)";
     if($conn->query($query) == true){
-        header("location: associate_subject.php?msg=Subject has been Associated with selected class");
+        header("location: associate_professor.php?msg=Subject has been Associated to Professor");
     }
     else{
-        header("location: associate_subject.php?msg=Something went wrong");
+        header("location: associate_professor.php?msg=Please associate subject to that class first");
     }
 ?>
