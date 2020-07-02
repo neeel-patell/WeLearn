@@ -79,7 +79,7 @@
                 var medium = $("#medium_drop").val();
                 $.ajax({
                     type: 'POST',
-                    url: "../../get_class.php",
+                    url: "../api/get_class_data.php",
                     data: {medium:medium},
                     dataType: "text",
                     success: function(data) {

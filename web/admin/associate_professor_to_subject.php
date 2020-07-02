@@ -7,7 +7,6 @@
     $professor = $_POST['professor'];
 
     $query = "SELECT id from class_subject where class_id=$class and subject_id=$subject";
-    echo $query;
     $result = $conn->query($query);
     $result = $result->fetch_array();
     $subject = $result['id'];

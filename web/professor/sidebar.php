@@ -5,29 +5,22 @@
     </div>
     <ul class="navbar-nav flex-column text-center mt-3" style="font-weight: 500">
         <li class="nav-item border-top">
-            <a href="index.php" class="nav-link text-info">Home <i class="fas fa-home"></i></a>
+            <a href="index.php" class="nav-link text-secondary">Home <i class="fas fa-home"></i></a>
+        </li>
+        <li class="nav-item border-top">
+            <a href="associated_subject.php" class="nav-link text-info">Associated Subjects <i class="fas fa-book"></i></a>
         </li>
         <li class="nav-item dropdown border-top p-2">
-            <a class="dropdown-toggle nav-link p-0" data-toggle="collapse" data-target="#video_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Manage Video
+            <a class="dropdown-toggle nav-link p-0 text-primary" data-toggle="collapse" data-target="#topic_collapse" role="button" aria-expanded="false">
+                Manage Topic
             </a>
-            <div class="collapse p-2" id="video_collapse">
-                <a class="nav-link" href="add_video.php">Add Video</a>
-                <a class="nav-link" href="view_Video.php">View Video</a>
+            <div class="collapse p-2" id="topic_collapse">
+                <a class="nav-link" href="add_topic.php">Add Topic</a>
+                <a class="nav-link" href="view_topic.php">View Topic</a>
             </div>
         </li>
         <li class="nav-item dropdown border-top p-2">
-            <a class="dropdown-toggle nav-link p-0" data-toggle="collapse" data-target="#city_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-                Manage City
-            </a>
-            <div class="collapse p-2" id="city_collapse">
-                <a class="nav-link" href="a.php">Link1</a>
-                <a class="nav-link" href="a.php">Link2</a>
-                <a class="nav-link" href="a.php">Link3</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown border-top p-2">
-            <a class="dropdown-toggle nav-link p-0" data-toggle="collapse" data-target="#area_collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="dropdown-toggle nav-link p-0" data-toggle="collapse" data-target="#area_collapse" role="button" aria-expanded="false">
                 Manage Area
             </a>
             <div class="collapse p-2" id="area_collapse">

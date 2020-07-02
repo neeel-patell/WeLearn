@@ -64,7 +64,7 @@
                 var medium = $("#medium").val();
                 $.ajax({
                     type: 'POST',
-                    url: "get_class.php",
+                    url: "../api/get_class.php",
                     data: {medium:medium},
                     dataType: "html",
                     success: function(data) {
@@ -76,7 +76,7 @@
                 var name = $("#class").val();
                 $.ajax({
                     type: 'POST',
-                    url: "get_subject.php",
+                    url: "../api/get_subject.php",
                     data: {class:name},
                     dataType: "html",
                     success: function(data) {
