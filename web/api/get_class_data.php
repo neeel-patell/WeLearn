@@ -1,6 +1,6 @@
 <?php
     header('content-type: application/json');
-    require 'connection.php';
+    require '../../connection.php';
     $conn = getConn();
     $data = array();
     if(!isset($_POST['medium'])){
