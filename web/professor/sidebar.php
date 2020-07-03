@@ -19,16 +19,6 @@
                 <a class="nav-link" href="view_topic.php">View Topic</a>
             </div>
         </li>
-        <li class="nav-item dropdown border-top p-2">
-            <a class="dropdown-toggle nav-link p-0" data-toggle="collapse" data-target="#area_collapse" role="button" aria-expanded="false">
-                Manage Area
-            </a>
-            <div class="collapse p-2" id="area_collapse">
-                <a class="nav-link" href="a.php">Link1</a>
-                <a class="nav-link" href="a.php">Link2</a>
-                <a class="nav-link" href="a.php">Link3</a>
-            </div>
-        </li>
         <li class="nav-item border-top">
             <a href="change_password.php" class="nav-link text-danger">Change Password</a>
         </li>

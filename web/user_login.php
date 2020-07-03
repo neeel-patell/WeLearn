@@ -4,7 +4,7 @@
     $conn = getConn();
 
     $email = $_POST['email'];
-    $password = hash("sha256",$_POST['password']);
+    $password = hash("sha256",$_POST['pass']);
 
     $query = "select user_type,active,id,first_name,last_name,class_id from login where email = '$email' and password = '$password'";
     $result = $conn->query($query);

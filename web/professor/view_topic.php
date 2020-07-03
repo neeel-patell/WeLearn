@@ -46,6 +46,7 @@
                         <thead>
                             <th class="w-25">Sr. No</th>
                             <th>Topic Name</th>
+                            <th>Index</th>
                             <th>Action</th>
                         </thead>
                         <tbody id="topic_table"></tbody>
@@ -69,9 +70,9 @@
                             var string = "<tr>"+
                                 "<th>"+(i+1)+"</th>"+
                                 "<td>"+data.data[i].name+"</td>"+
+                                "<td>"+((data.data[i].index!=255)?(data.data[i].index):'-')+"</td>"+
                                 "<td>"+
-                                    "<a href=''>Remove</a> / "+
-                                    "<a href=''>Remove</a>"+
+                                    '<a class="btn p-0 text-primary btn-link" onclick="return confirmation('+data.data[i].id+',\''+data.data[i].name+'\');">Remove</a>'+
                                 "</td>"+
                                 "</tr>";
                             table = table + string;
@@ -80,6 +81,11 @@
                     }
                 });
             });
+            function confirmation(id,name){
+                if(confirm("Do you want to delete "+name+" and associated videos?") == true){
+                    location.href="remove_topic.php?id="+id;
+                }
+            }
         </script>
     </body>
 </html>

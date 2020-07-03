@@ -6,11 +6,11 @@
 
     $subject = $_POST['subject'];
 
-    $query = "select id,name from topic where subject_id=$subject order by `index` asc";
+    $query = "select id,name,`index` from topic where subject_id=$subject order by `index` asc";
     $result = $conn->query($query);
     
     while($row = $result->fetch_array()){
-        array_push($data,array("id"=>$row['id'],"name"=>$row['name']));
+        array_push($data,array("id"=>$row['id'],"name"=>$row['name'],"index"=>$row['index']));
     }
 
     echo json_encode(array('data'=>$data));
