@@ -28,7 +28,7 @@
         if(mysqli_num_rows($result) != 0){
             $query = "UPDATE video
                       set `index` = `index` + 1
-                      where `index`>=$index and `index`<=255 and topic_id=$topic";
+                      where `index`>=$index and `index`<255 and topic_id=$topic";
             if($conn->query($query) == false){
                 header("location: add_video.php?msg=Something went wrong...");
             }
