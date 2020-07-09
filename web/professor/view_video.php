@@ -9,12 +9,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Welearn - Professor - Topic List</title>
+        <title>Welearn - Professor - Video List</title>
         <?php include_once 'css_files.php' ?>
     </head>
     <body>
         <div class="bg-dark container-fluid p-3 pl-5" style="min-height: 10vh;">
-            <h4 class="text-white">Topic List <i class="fas fa-edit"></i></h4>
+            <h4 class="text-white">Video List <i class="fas fa-film"></i></h4>
             <button type="button" id="sidebarCollapse"  class="btn btn-outline-light mr-2 mt-2"><i class="fas fa-grip-lines"></i></button>
         </div>
         <div class="d-flex p-0" style="min-height: 80vh;">
@@ -50,7 +50,7 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                             <th class="w-25">Sr. No</th>
-                            <th>Topic Name</th>
+                            <th>Video Name</th>
                             <th>Index</th>
                             <th>Action</th>
                         </thead>
@@ -94,7 +94,7 @@
                                          "<td>"+(i+1)+"</td>"+
                                          "<td>"+data.data[i].name+"</td>"+
                                          "<td>"+data.data[i].index+"</td>"+
-                                         "<td>"+data.data[i].name+"</td>"+
+                                         "<td>"+"<a href=\"view_comments.php?id="+data.data[i].id+"\">View Comments</a>"+"</td>"+
                                          "</tr>";
                             table = table + string;
                         }

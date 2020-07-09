@@ -9,12 +9,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Welearn - Professor - Add Topic</title>
+        <title>Welearn - Professor - Add Video</title>
         <?php include_once 'css_files.php' ?>
     </head>
     <body>
         <div class="bg-dark container-fluid p-3 pl-5" style="min-height: 10vh;">
-            <h4 class="text-white">Add Topic <i class="far fa-edit"></i></h4>
+            <h4 class="text-white">Add Video <i class="fas fa-video"></i></h4>
             <button type="button" id="sidebarCollapse"  class="btn btn-outline-light mr-2 mt-2"><i class="fas fa-grip-lines"></i></button>
         </div>
         <div class="d-flex p-0" style="min-height: 80vh;">

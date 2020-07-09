@@ -1,12 +1,12 @@
 <?php
-    include '../../mail/mail_sender.php';
-    include '../../connection.php';
+    include '../mail/mail_sender.php';
+    include '../connection.php';
     $email = $_POST['email'];
     $conn = getConn();
     $query = "select id from login where email='$email' and user_type=0";
     $result = $conn->query($query);
     if(mysqli_num_rows($result) == 0){
-        header('location: forgot_password.php?msg=You are Admin Use particular Mobile App');
+        header('location: forgot_password.php?msg=You are not Admin Use particular Mobile App');
     }
     else{
         $pass = getRandom();
