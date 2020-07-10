@@ -1,5 +1,6 @@
 <?php
-    $msg = $comment = 0;
+    $msg = "";
+    $comment = 0;
     include_once 'validate_professor.php'; 
     if(isset($_GET['msg'])){
         $msg = $_GET['msg'];
@@ -22,9 +23,9 @@
         <div class="bg-dark container-fluid p-3 pl-5" style="min-height: 10vh;">
             <h4 class="text-white">
                 <?php 
-                    $video = $conn->query("SELECT name from video where id=$video");
-                    $video = $video->fetch_array();
-                    echo $video['name']." Comments ";
+                    $video_show = $conn->query("SELECT name from video where id=$video");
+                    $video_show = $video_show->fetch_array();
+                    echo $video_show['name']." Comments ";
                 ?>
                 <i class="fas fa-comments"></i>
             </h4>
@@ -34,6 +35,10 @@
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-3">
                 
+                <?php if($msg != ""){ ?>
+                <div class="alert alert-warning text-center h6"><?php echo $msg; ?></div>
+                <?php } ?>
+
                 <?php 
                     $sr=1;
                     while($row = $comments->fetch_array()){
@@ -41,10 +46,16 @@
                         $user = $user->fetch_array();
                 ?>
                 <div class="card mt-3 mb-3 p-3" id="comment_div_<?php echo $sr; ?>">
-                    <h5><?php echo $sr++.". ".$user['first_name']." ".$user['last_name']; ?></h5>
+                    <div class="row">
+                        <h5 class="col-md-9"><?php echo $sr++.". ".$user['first_name']." ".$user['last_name']; ?></h5>
+                        <p class="col-md-3 text-right">
+                            <button class="btn link text-danger" onclick="if(confirm('Do you want to delete selected comment and it\'s associated replies?')){location.href='remove_comment.php?comment=<?php echo $row['id']; ?>&video=<?php echo $video; ?>';}">Delete Comment <i class="fas fa-trash-alt"></i></button>
+                        </p>
+                    </div>
                     <p><?php echo $row['description']; ?></p>
-                    <form action="add_reply.php" method="post">
+                    <form action="insert_reply.php" method="post">
                         <input type="hidden" name="comment" value="<?php echo $row['id']; ?>">
+                        <input type="hidden" name="video" value="<?php echo $video; ?>">
                         <div class="row">
                             <div class="col-md-9 mb-3">
                                 <input type="text" class="form-control" placeholder="Write Reply for comment" name="reply" required>
@@ -71,7 +82,7 @@
             function get_replies(sr,comment){
                 $.ajax({
                     type : "POST",
-                    url : "view_comment_reply.php",
+                    url : "../api/view_comment_reply.php",
                     dataType : "text",
                     data : {comment:comment},
                     success : function(data){
@@ -84,6 +95,7 @@
                             var div_data = "<div class=\"card p-2 mb-1\">"+
                                            "<h6>"+(i+1)+". "+data.data[i].name+"</h6>"+
                                            "<p>"+data.data[i].description+"</p>"+
+                                           "<p class=\"text-right\"><button class=\"btn link\" onclick=\"if(confirm('Do You Want to Delete this reply') == true){location.href=\'remove_reply.php?reply="+data.data[i].id+"&video=<?php echo $video; ?>\';}\">Delete Reply</button></p>"+
                                            "</div>";
                             print_string += div_data;
                         }
