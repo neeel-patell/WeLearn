@@ -28,6 +28,15 @@
                 <a class="nav-link" href="view_video.php">View Videos</a>
             </div>
         </li>
+        <li class="nav-item dropdown border-top p-2">
+            <a class="dropdown-toggle nav-link p-0 text-primary" data-toggle="collapse" data-target="#tutorial_collapse" role="button" aria-expanded="false">
+                Manage Tutorials
+            </a>
+            <div class="collapse p-2" id="tutorial_collapse">
+                <a class="nav-link" href="add_tutorial.php">Add Tutorial</a>
+                <a class="nav-link" href="view_tutorial.php">View Tutorial</a>
+            </div>
+        </li>
         <li class="nav-item border-top">
             <a href="change_password.php" class="nav-link text-danger">Change Password</a>
         </li>
