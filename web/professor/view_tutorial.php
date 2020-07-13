@@ -21,6 +21,11 @@
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-2">
                 <div class="table-responsive p-3">
+
+                    <?php if($msg !== 0){ ?>
+                    <div class="alert alert-primary text-center h6"><?php echo $msg; ?></div>
+                    <?php } ?>
+
                     <div class="row mb-3">
                         <div class="col-md-4 mb-3">
                             <select class="form-control" name="subject" id="subject" required>
@@ -92,7 +97,10 @@
                             var string = "<tr>"+
                                          "<td>"+(i+1)+"</td>"+
                                          "<td>"+data.data[i].name+"</td>"+
-                                         "<td>"+"<a href=\"view_tutorial_single.php?id="+data.data[i].id+"\">View</a>"+"</td>"+
+                                         "<td>"+
+                                         "<a href=\"view_tutorial_single.php?id="+data.data[i].id+"\">View</a> / "+
+                                         "<button class=\"btn btn-link p-0\" onclick=\"if(confirm('Do you want to delete selected tutorial?') == true){location.href=\'delete_tutorial.php?id="+data.data[i].id+"\';}\">"+"Remove</button>"+
+                                         "</td>"+
                                          "</tr>";
                             table = table + string;
                         }
