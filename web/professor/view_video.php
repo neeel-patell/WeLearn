@@ -21,32 +21,30 @@
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-2">
                 <div class="table-responsive p-3">
-                    <div class="row mb-3">
-                        <div class="col-md-4 mb-3">
-                            <select class="form-control" name="subject" id="subject" required>
-                                <option value="" selected>- - - Select Subject - - -</option>
-                                
-                                <?php
-                                    while($row = $associated_subjects->fetch_array()){ 
-                                        $class_subject = $conn->query("SELECT class_id,subject_id from class_subject where id=".$row['subject_id']);
-                                        $class_subject = $class_subject->fetch_array();
-                                        $subject = $conn->query("SELECT `name` from `subject` where id=".$class_subject['subject_id']);
-                                        $subject = $subject->fetch_array();
-                                        $class = $conn->query("SELECT `name` from `class` where id=".$class_subject['class_id']);
-                                        $class = $class->fetch_array();
-                                ?>
-                                <option value="<?php echo $row['subject_id']; ?>"><?php echo $class['name']." - ".$subject['name']; ?></option>
-                                <?php } ?>
 
-                            </select>
-                        </div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <select name="topic" id="topic" class="form-control" required>
-                                <option value="" selected>- - - Select Topic - - -</option>
-                            </select>
-                        </div>
-                    </div>
+                    <?php if($msg !== 0){ ?>
+                    <div class="alert alert-secondary text-center h6"><?php echo $msg; ?></div>
+                    <?php } ?>
+
+                    <select class="form-control mb-3" name="subject" id="subject" required>
+                        <option value="" selected>- - - Select Subject - - -</option>
+                        
+                        <?php
+                            while($row = $associated_subjects->fetch_array()){ 
+                                $class_subject = $conn->query("SELECT class_id,subject_id from class_subject where id=".$row['subject_id']);
+                                $class_subject = $class_subject->fetch_array();
+                                $subject = $conn->query("SELECT `name` from `subject` where id=".$class_subject['subject_id']);
+                                $subject = $subject->fetch_array();
+                                $class = $conn->query("SELECT `name` from `class` where id=".$class_subject['class_id']);
+                                $class = $class->fetch_array();
+                        ?>
+                        <option value="<?php echo $row['subject_id']; ?>"><?php echo $class['name']." - ".$subject['name']; ?></option>
+                        <?php } ?>
+
+                    </select>
+                    <select name="topic" id="topic" class="form-control mb-5" required>
+                        <option value="" selected>- - - Select Topic - - -</option>
+                    </select>
                     <table class="table table-bordered table-hover">
                         <thead>
                             <th class="w-25">Sr. No</th>
@@ -94,7 +92,11 @@
                                          "<td>"+(i+1)+"</td>"+
                                          "<td>"+data.data[i].name+"</td>"+
                                          "<td>"+data.data[i].index+"</td>"+
-                                         "<td>"+"<a href=\"view_comments.php?id="+data.data[i].id+"\">View Comments</a>"+"</td>"+
+                                         "<td>"+
+                                         "<a href=\"view_comments.php?id="+data.data[i].id+"\">View Comments</a> / "+
+                                         "<a href=\"video_watch_time.php?id="+data.data[i].id+"\">Watched By</a> / "+
+                                         "<button class=\"btn btn-link p-0\" onclick=\"if(confirm('Do you want to remove video and associated comments ?') == true){location.href='delete_video.php?id="+data.data[i].id+"';}\">Remove</button>"+
+                                         "</td>"+
                                          "</tr>";
                             table = table + string;
                         }

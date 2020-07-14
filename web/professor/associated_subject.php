@@ -15,7 +15,7 @@
         </div>
         <div class="d-flex p-0" style="min-height: 80vh;">
             <?php include_once 'sidebar.php' ?>
-            <div class="container-fluid p-0">
+            <div class="container-fluid p-3">
                 <div class="table-responsive mt-4 card p-3">
                     <h4 class="text-danger mb-3"><u>Available Subject List</u></h4>
                     <table class="table table-hover text-center table-bordered">
