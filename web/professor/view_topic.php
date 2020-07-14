@@ -21,6 +21,11 @@
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-2">
                 <div class="table-responsive p-3">
+
+                    <?php if($msg !== 0){ ?>
+                    <div class="alert alert-danger text-center h6"><?php echo $msg; ?></div>
+                    <?php } ?>
+
                     <table class="table table-bordered table-hover">
                         <thead>
                             <th class="border-0">
