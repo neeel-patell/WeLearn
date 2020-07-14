@@ -1,6 +1,6 @@
 <?php
     include_once '../../connection.php';
-    include '../functions/remove_comment.php';
+    include 'remove_comment.php';
     
     function delete_video($id){
         $conn = getConn();
