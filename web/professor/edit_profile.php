@@ -32,11 +32,11 @@
                     </h5>
                     <div class="container-fluid p-2">
                         <label>First Name : </label>
-                        <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $user_details['first_name']; ?>" placeholder="Enter First Name" maxlength="25" required disabled>
+                        <input type="text" class="form-control" name="first_name" id="first_name" value="<?php echo $user_details['first_name']; ?>" placeholder="Enter First Name" pattern="/^[A-Za-z ]+$/" data-parsley-error-message="Name can only contain alphabets and 25 character long" maxlength="25" required disabled>
                     </div>
                     <div class="container-fluid p-2">
                         <label>Last Name : </label>
-                        <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $user_details['last_name']; ?>" placeholder="Enter Last Name" maxlength="25" required disabled>
+                        <input type="text" class="form-control" name="last_name" id="last_name" value="<?php echo $user_details['last_name']; ?>" placeholder="Enter Last Name" pattern="/^[A-Za-z ]+$/" data-parsley-error-message="Name can only contain alphabets and 25 character long" maxlength="25" required disabled>
                     </div>
                     <div class="container-fluid p-2">
                         <label>Mobile : </label>
