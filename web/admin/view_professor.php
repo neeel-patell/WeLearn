@@ -1,6 +1,10 @@
 <?php
     include_once 'validate_admin.php';
-    $professor = $conn->query("select first_name,last_name,class_id,medium_id,mobile,email from login where user_type=1");
+    $msg = 0;
+    if(isset($_GET['msg'])){
+        $msg = $_GET['msg'];
+    }
+    $professor = $conn->query("select id,first_name,last_name,class_id,medium_id,mobile,email from login where user_type=1");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +20,17 @@
         <div class="d-flex p-0" style="min-height: 80vh;">
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-3" id="content" style="display :block;">
+
+                <?php if($msg != ""){ ?>
+                <div class="alert alert-primary h6"><?php echo $msg ?></div>
+                <?php } ?>
+
                 <div class="table-responsive p-3">
                     <table class="table table-hover text-center table-bordered">
                         <thead class="thead-light">
                             <tr>
+                                <th>Sr. No</th>
                                 <th>Name</td>
-                                <th>Class</td>
                                 <th>Mobile</td>
                                 <th>Email</td>
                                 <th>Action</td>
@@ -30,18 +39,18 @@
                         <tbody>
 
                             <?php
+                                $sr = 1;
                                 while($row = $professor->fetch_array()){
-                                $medium = $conn->query("select name from medium where id=".$row['medium_id']);
-                                $medium = $medium->fetch_array();
-                                $class = $conn->query("select name from class where id=".$row['class_id']);
-                                $class = $class->fetch_array();
                             ?>
                             <tr>
+                                <th><?php echo $sr++; ?></th>
                                 <td><?php echo $row['first_name']." ".$row['last_name']; ?></td>
-                                <td><?php echo $class['name']." - ".$medium['name']; ?></td>
                                 <td><a href="tel:<?php echo $row['mobile']; ?>"><?php echo $row['mobile']; ?></a></td>
                                 <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['email']; ?></a></td>
-                                <td></td>
+                                <td>
+                                    <button class="btn btn-link p-0">Edit <i class="fas fa-pen-square"></i></button> / 
+                                    <button class="btn btn-link p-0" onclick="if(confirm('Do you want to remove account of <?php echo $row['first_name'].' '.$row['last_name']; ?> for permanently?')){location.href='remove_professor.php?id=<?php echo $row['id'] ?>';}">Remove <i class="far fa-trash-alt"></i></button>
+                                </td>
                             </tr>
                             <?php } ?>
                         
