@@ -1,6 +1,10 @@
 <?php
     include_once 'validate_admin.php';
     $medium = $conn->query("select id,name from medium");
+    $msg = "";
+    if(isset($_GET['msg'])){
+        $msg = $_GET['msg'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +20,11 @@
         <div class="d-flex p-0" style="min-height: 80vh;">
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-3" id="content">
+
+                <?php if($msg != ""){ ?>
+                <div class="alert alert-primary text-center h6"><?php echo $msg; ?></div>
+                <?php } ?>
+
                 <div class="table-responsive mt-4 card p-3">
                     <div class="clearfix">
                         <h4 class="text-danger float-left w-50"><u>Available Class List</u></h4>

@@ -22,7 +22,7 @@
             <div class="container-fluid p-3" id="content">
                 
                 <?php if($msg != ""){ ?>
-                    <div class="alert alert-primary h6"><?php echo $msg; ?></div>
+                <div class="alert alert-primary h6"><?php echo $msg; ?></div>
                 <?php } ?>
                 
                 <div class="row p-2">

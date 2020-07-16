@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Welearn - Admin - View Medium</title>
+        <title>Welearn - Admin - View Subject</title>
         <?php include_once 'css_files.php' ?>
     </head>
     <body>
@@ -22,7 +22,7 @@
             <div class="container-fluid p-3" id="content">
                 
                 <?php if($msg != ""){ ?>
-                    <div class="alert alert-primary h6"><?php echo $msg; ?></div>
+                <div class="alert alert-primary text-center h6"><?php echo $msg; ?></div>
                 <?php } ?>
                 
                 <form class="card border-success p-3 mb-3" method="post" action="insert_subject.php" data-parsley-validate>
@@ -50,7 +50,8 @@
                                 <td><?php echo $sr++; ?></td>
                                 <td><?php echo $row['name']; ?></td>
                                 <td>
-                                    <button class="btn btn-link p-0" onclick='if(confirm("Do you want to remove <?php echo $row['name']; ?> ?") == true){location.href="remove_subject.php?id=<?php echo $row['id'] ?>"}'>Remove</button> / 
+                                    <button class="btn btn-link p-0" onclick="location.href='edit_subject.php?id=<?php echo $row['id']; ?>';">Edit</button> /
+                                    <button class="btn btn-link p-0" onclick="if(confirm('Do you want to remove <?php echo $row['name']; ?> ?') == true){location.href='remove_main_subject.php?id=<?php echo $row['id']; ?>';}">Remove</button>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -61,32 +62,5 @@
             </div>
         </div>
         <?php include_once 'footer.php' ?>
-        <script type="text/javascript">
-            $("#medium_drop").change(function(){
-                var medium = $("#medium_drop").val();
-                $.ajax({
-                    type: 'POST',
-                    url: "../../get_class.php",
-                    data: {medium:medium},
-                    dataType: "text",
-                    success: function(data) {
-                        data = JSON.parse(data);
-                        var table = "";
-                        for(var i=0; i<data.data.length; i++){
-                            var string = "<tr>"+
-                                "<th>"+(i+1)+"</th>"+
-                                "<td>"+data.data[i].name+"</td>"+
-                                "<td>"+
-                                    "<a href=''>Remove</a> / "+
-                                    "<a href=''>Remove</a>"+
-                                "</td>"+
-                                "</tr>";
-                            table = table + string;
-                        }
-                        $("#class_table").html(table);
-                    }
-                });
-            });
-        </script>
     </body>
 </html>

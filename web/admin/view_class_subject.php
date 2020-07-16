@@ -10,6 +10,10 @@
             header('location: view_class.php');
         }
     }
+    $msg = "";
+    if(isset($_GET['msg'])){
+        $msg = $_GET['msg'];
+    }
     $class_details = $conn->query("SELECT name,medium_id from class where id=$class");
     $class_details = $class_details->fetch_array();
     $medium = $conn->query("SELECT name from medium where id=".$class_details['medium_id']);
@@ -30,6 +34,11 @@
         <div class="d-flex p-0" style="min-height: 80vh;">
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-3" id="content">
+
+                <?php if($msg != ""){ ?>
+                <div class="alert alert-primary h6"><?php echo $msg; ?></div>
+                <?php } ?>
+
                 <div class="table-responsive mt-4 card p-3">
                     <table class="table table-hover text-center table-bordered">
                         <thead class="thead-light">
