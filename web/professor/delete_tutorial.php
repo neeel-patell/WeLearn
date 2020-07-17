@@ -8,6 +8,7 @@
 
         $id = $_GET['id'];
         $query = "delete from tutorial where id=$id";
+        unlink("../../tutorials/$id.pdf");
         if($conn->query($query) == true){
             header('location: view_tutorial.php?msg=Tutorial has been deleted');
         }
