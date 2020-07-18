@@ -48,7 +48,7 @@
                                 <td><a href="tel:<?php echo $row['mobile']; ?>"><?php echo $row['mobile']; ?></a></td>
                                 <td><a href="mailto:<?php echo $row['email']; ?>"><?php echo $row['email']; ?></a></td>
                                 <td>
-                                    <button class="btn btn-link p-0">Edit <i class="fas fa-pen-square"></i></button> / 
+                                    <button class="btn btn-link p-0" onclick="location.href='view_professor_details.php?id=<?php echo $row['id']; ?>'">View Full details <i class="fas fa-eye"></i></button> / 
                                     <button class="btn btn-link p-0" onclick="if(confirm('Do you want to remove account of <?php echo $row['first_name'].' '.$row['last_name']; ?> for permanently?')){location.href='remove_professor.php?id=<?php echo $row['id'] ?>';}">Remove <i class="far fa-trash-alt"></i></button>
                                 </td>
                             </tr>
