@@ -41,6 +41,9 @@
             </div>
         </li>
         <li class="nav-item border-top">
+            <a href="view_student.php" class="nav-link text-info">View Students <i class="fas fa-user-graduate"></i></a>
+        </li>
+        <li class="nav-item border-top">
             <a href="change_password.php" class="nav-link text-danger">Change Password</a>
         </li>
         <li class="nav-item border-top border-bottom">
