@@ -4,7 +4,7 @@
     if(isset($_GET['msg'])){
         $msg = $_GET['msg'];
     }
-    $student = $conn->query("select id,first_name,last_name,class_id,medium_id,mobile,email,active from login where user_type=2");
+    $student = $conn->query("select id,first_name,last_name,class_id,medium_id,mobile,email,active from login where user_type=2 order by first_name,last_name");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,12 @@
         <div class="d-flex p-0" style="min-height: 80vh;">
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-3" id="content" style="display :block;">
-                <div class="container">
+                
+                <?php if($msg != ""){ ?>
+                <div class="alert alert-primary h6 text-center"><?php echo $msg ?></div>
+                <?php } ?>
+
+                <div class="container mt-3">
                     <div class="row">
                         <div class="col-md-6"></div>
                         <div class="col-md-6">
@@ -28,11 +33,6 @@
                         </div>
                     </div>
                 </div>
-
-                <?php if($msg != ""){ ?>
-                <div class="alert alert-primary h6 text-center"><?php echo $msg ?></div>
-                <?php } ?>
-
                 <div class="table-responsive p-3">
                     <table class="table table-hover text-center table-bordered">
                         <thead class="thead-light">
@@ -97,9 +97,16 @@
                                             "<td>"+data.data[i].first_name+" "+data.data[i].last_name+"</td>"+
                                             "<td>"+data.data[i].medium+"</td>"+
                                             "<td>"+data.data[i].class+"</td>"+
-                                            "<td>"+data.data[i].id+"</td>"+
-                                            "<tr>";
-                                table = table + string;
+                                            "<td>"+
+                                            "<button class='btn btn-link p-0' onclick=\"location.href='view_student_details.php?id="+data.data[i].id+"'\">View Full details <i class='fas fa-eye'></i></button> / "+
+                                            "<button class='btn btn-link p-0' onclick=\"if(confirm('Do you want to remove account of "+data.data[i].first_name+" "+data.data[i].last_name+" for permanently?')){location.href='remove_student.php?id="+data.data[i].id+"';}\">Remove <i class='far fa-trash-alt'></i></button> /";
+                                if(data.data[i].active == 1){
+                                    string = string + "<button class='btn btn-link p-0' onclick=\"if(confirm('Do you want to disable account of "+data.data[i].first_name+" "+data.data[i].last_name+" ?')){location.href='disable_student.php?id="+data.data[i].id+"';}\">Deactivate Account <i class='fas fa-ban'></i></button>";
+                                }
+                                else{
+                                    string = string + "<button class='btn btn-link p-0' onclick=\"if(confirm('Do you want to disable account of "+data.data[i].first_name+" "+data.data[i].last_name+" ?')){location.href='enable_student.php?id="+data.data[i].id+"';}\">Activate Account <i class='fas fa-check'></i></button>";
+                                }
+                                table = table + string + "</td></tr>";
                             }
                             $("#search_table").html(table);
                         }
