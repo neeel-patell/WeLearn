@@ -20,6 +20,14 @@
         <div class="d-flex p-0" style="min-height: 80vh;">
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-3" id="content" style="display :block;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <input type="search" class="form-control" id="search_textbox" placeholder="Search Student by email, mobile or name">
+                        </div>
+                    </div>
+                </div>
 
                 <?php if($msg != ""){ ?>
                 <div class="alert alert-primary h6 text-center"><?php echo $msg ?></div>
@@ -36,7 +44,7 @@
                                 <th>Action</td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="search_table">
 
                             <?php
                                 $sr = 1;
@@ -46,6 +54,7 @@
                                 $medium = $conn->query("SELECT name from medium where id=".$row['medium_id']);
                                 $medium = $medium->fetch_array();
                             ?>
+
                             <tr>
                                 <th><?php echo $sr++; ?></th>
                                 <td><?php echo $row['first_name']." ".$row['last_name']; ?></td>
@@ -70,5 +79,36 @@
             </div>
         </div>
         <?php include_once 'footer.php' ?>
+        <script>
+            $("#search_textbox").change(function(){
+                var value = $("#search_textbox").val();
+                if(value != ""){
+                    $.ajax({
+                        type : "POST",
+                        url : "../api/search_user.php",
+                        data : {search : value},
+                        dataType : "html",
+                        success : function(data){
+                            data = JSON.parse(data);
+                            var table = "";
+                            for(var i=0 ; i<data.data.length ; i++){
+                                var string = "<tr>"+
+                                            "<td>"+(i+1)+"</td>"+
+                                            "<td>"+data.data[i].first_name+" "+data.data[i].last_name+"</td>"+
+                                            "<td>"+data.data[i].medium+"</td>"+
+                                            "<td>"+data.data[i].class+"</td>"+
+                                            "<td>"+data.data[i].id+"</td>"+
+                                            "<tr>";
+                                table = table + string;
+                            }
+                            $("#search_table").html(table);
+                        }
+                    });
+                }
+                else{
+                    location.reload(true);
+                }
+            });
+        </script>
     </body>
 </html>

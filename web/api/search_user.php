@@ -29,28 +29,35 @@
             }
         }
         else{
+            $ids = array();
             if(strpos($search, " ") !== false){
                 $search = explode(" ",$search);
-                $query = "SELECT first_name,last_name,id,class_id,medium_id from login where lower(first_name) LIKE \"%".$search[0]."%\" OR lower(last_name) LIKE \"%".$search[1]."%\"";
+                $query = "SELECT first_name,last_name,id,class_id,medium_id from login where lower(first_name) LIKE \"%".$search[0]."%\" AND lower(last_name) LIKE \"%".$search[1]."%\"";
                 $result = $conn->query($query);
                 while($row = $result->fetch_array()){
                     $class_name = $conn->query("select name from class where id=".$row['class_id']);
                     $class_name = $class_name->fetch_array();
                     $medium_name = $conn->query("select name from medium where id=".$row['medium_id']);
                     $medium_name = $medium_name->fetch_array();
+                    array_push($ids,$row['id']);
                     array_push($data,array("first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"id"=>$row['id'],"class"=>$class_name['name'],"medium"=>$medium_name['name']));
                 }
-                $query = "SELECT first_name,last_name,id,class_id,medium_id from login where lower(first_name) LIKE \"%".$search[1]."%\" OR lower(last_name) LIKE \"%".$search[0]."%\"";
+                $query = "SELECT first_name,last_name,id,class_id,medium_id from login where lower(first_name) LIKE \"%".$search[1]."%\" AND lower(last_name) LIKE \"%".$search[0]."%\"";
                 $result = $conn->query($query);
                 while($row = $result->fetch_array()){
-                    $class_name = $conn->query("select name from class where id=".$row['class_id']);
-                    $class_name = $class_name->fetch_array();
-                    $medium_name = $conn->query("select name from medium where id=".$row['medium_id']);
-                    $medium_name = $medium_name->fetch_array();
-                    array_push($data,array("first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"id"=>$row['id'],"class"=>$class_name['name'],"medium"=>$medium_name['name']));
+                    foreach($data as $element){
+                        if(!in_array($row['id'],$ids,true)){
+                            $class_name = $conn->query("select name from class where id=".$row['class_id']);
+                            $class_name = $class_name->fetch_array();
+                            $medium_name = $conn->query("select name from medium where id=".$row['medium_id']);
+                            $medium_name = $medium_name->fetch_array();
+                            array_push($data,array("first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"id"=>$row['id'],"class"=>$class_name['name'],"medium"=>$medium_name['name']));
+                        }
+                    }
                 }
             }
             else{
+                $ids = array();
                 $query = "SELECT first_name,last_name,id,class_id,medium_id from login where lower(first_name) LIKE '%$search%'";
                 $result = $conn->query($query);
                 while($row = $result->fetch_array()){
@@ -58,16 +65,21 @@
                     $class_name = $class_name->fetch_array();
                     $medium_name = $conn->query("select name from medium where id=".$row['medium_id']);
                     $medium_name = $medium_name->fetch_array();
+                    array_push($ids,$row['id']);
                     array_push($data,array("first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"id"=>$row['id'],"class"=>$class_name['name'],"medium"=>$medium_name['name']));
                 }
                 $query = "SELECT first_name,last_name,id,class_id,medium_id from login where lower(last_name) LIKE '%$search%'";
                 $result = $conn->query($query);
                 while($row = $result->fetch_array()){
-                    $class_name = $conn->query("select name from class where id=".$row['class_id']);
-                    $class_name = $class_name->fetch_array();
-                    $medium_name = $conn->query("select name from medium where id=".$row['medium_id']);
-                    $medium_name = $medium_name->fetch_array();
-                    array_push($data,array("first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"id"=>$row['id'],"class"=>$class_name['name'],"medium"=>$medium_name['name']));
+                    foreach($data as $element){
+                        if(!in_array($row['id'],$ids,true)){
+                            $class_name = $conn->query("select name from class where id=".$row['class_id']);
+                            $class_name = $class_name->fetch_array();
+                            $medium_name = $conn->query("select name from medium where id=".$row['medium_id']);
+                            $medium_name = $medium_name->fetch_array();
+                            array_push($data,array("first_name"=>$row['first_name'],"last_name"=>$row['last_name'],"id"=>$row['id'],"class"=>$class_name['name'],"medium"=>$medium_name['name']));
+                        }
+                    }
                 }
             }
         }
