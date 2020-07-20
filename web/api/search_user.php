@@ -4,7 +4,7 @@
     header('content-type: application/json');
     $data = array();
 
-    $usertype = 2;
+    $usertype = $_POST['user_type'];
     $search = strtolower($_POST['search']);
     if(is_numeric($search)){
         $query = "SELECT first_name,last_name,id,class_id,medium_id,active from login where mobile LIKE '%$search%' AND user_type=$usertype order by first_name,last_name";

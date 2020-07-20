@@ -86,7 +86,7 @@
                     $.ajax({
                         type : "POST",
                         url : "../api/search_user.php",
-                        data : {search : value},
+                        data : {search : value, user_type : 2},
                         dataType : "html",
                         success : function(data){
                             data = JSON.parse(data);
