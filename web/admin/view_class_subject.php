@@ -45,6 +45,7 @@
                             <tr>
                                 <th>Sr. No.</th>
                                 <th>Name</td>
+                                <th>Professor Name</th>
                                 <th>Action</td>
                             </tr>
                         </thead>
@@ -55,10 +56,17 @@
                                 while($row = $class_subject->fetch_array()){
                                     $subject = $conn->query("SELECT name from subject where id=".$row['subject_id']);
                                     $subject = $subject->fetch_array();
+                                    $professor = $conn->query("SELECT login_id from subject_professor where subject_id=".$row['id']);
+                                    $professor = $professor->fetch_array();
+                                    $professor_name = $conn->query("SELECT first_name,last_name from login where id=".$professor['login_id']);
+                                    $professor_name = $professor_name->fetch_array();
                             ?>
                             <tr>
                                 <th><?php echo $sr++; ?></th>
                                 <td class="w-50"><?php echo $subject['name']; ?></td>
+                                <td>
+                                    <button class="btn btn-link p-0" onclick="location.href='view_professor_details.php?id=<?php echo $professor['login_id'] ?>'"><?php echo $professor_name['first_name']." ".$professor_name['last_name']; ?></button>
+                                </td>
                                 <td>
                                     <button class="btn btn-link p-0" onclick="if(confirm('Do You want to delete subject association and its content ?') == true){location.href='remove_subject.php?id=<?php echo $row['id']; ?>&class=<?php echo $class; ?>';}">Remove Asscociation</button>
                                 </td>
