@@ -1,6 +1,6 @@
 <?php
     include_once 'validate_admin.php';
-    $medium = $conn->query("select id,name from medium");
+    $medium = $conn->query("select id,name,active from medium");
     $msg = "";
     if(isset($_GET['msg'])){
         $msg = $_GET['msg'];
@@ -50,8 +50,13 @@
                                 <th scope="row" style="width:10%"><?php echo $sr++; ?></td>
                                 <td><?php echo $row['name']; ?></td>
                                 <td>
-                                    <button class="btn btn-link p-0" onclick="if(confirm('Do You want to remove <?php echo $row['name']; ?> and associated classes?')){location.href='remove_medium.php?id=<?php echo $row['id']; ?>'}">Remove</button> / 
-                                    <button class="btn btn-link p-0" onclick="location.href='disable_medium.php?id=<?php echo $row['id']; ?>'">Disable</button>
+                                    <button class="btn btn-link p-0" onclick="if(confirm('Do You want to remove <?php echo $row['name']; ?> and associated classes and student accounts?')){location.href='remove_medium.php?id=<?php echo $row['id']; ?>'}">Remove</button> / 
+                                    
+                                    <?php if($row['active'] == 1){ ?>
+                                    <button class="btn btn-link p-0" onclick="if(confirm('Do You want to disable <?php echo $row['name']; ?> and associated classes and student accounts?')){location.href='disable_medium.php?id=<?php echo $row['id']; ?>'}">Disable</button>
+                                    <?php } else{ ?>
+                                        <button class="btn btn-link p-0" onclick="if(confirm('Do You want to enable <?php echo $row['name']; ?> and associated classes and student accounts?')){location.href='enable_medium.php?id=<?php echo $row['id']; ?>'}">Enable</button>
+                                    <?php } ?>
                                 </td>
                             </tr>
                             <?php } ?>
