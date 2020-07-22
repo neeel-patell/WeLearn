@@ -20,12 +20,21 @@
             <?php include_once 'sidebar.php' ?>
             <div class="container-fluid p-0" id="content" style="display :block; min-height: 80vh;">
                 <div class="container w-75">
-                    <form action="update_password.php" method="post" class="card p-4 mt-5">
+                    <form action="update_password.php" method="post" class="card p-4 mt-5" onsubmit="return checkPass()">
                     
                         <?php if($msg != ""){ ?>
                             <div class="alert alert-dark h6"><?php echo $msg; ?></div>
                         <?php } ?>
                         
+                        <div class="form-group mt-2">
+                            <label class="label">Old Password :</label>
+                            <div class="input-group mb-3">
+                                <input type="password" id="old_pass" name="old_pass" class="form-control" placeholder="Enter Old Password" aria-label="Password" minlength="8" maxlength="24" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" tabindex="-1" id="show_old_pass"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group mt-2">
                             <label class="label">New Password :</label>
                             <div class="input-group mb-3">
@@ -53,6 +62,16 @@
         </div>
         <?php include_once 'footer.php' ?>
         <script type="text/javascript">
+            $('#show_old_pass').click(function(){
+                if($('#old_pass').attr('type') === "password"){
+                    $('#old_pass').attr('type','text');
+                    $('#show_old_pass').html("<i class='fas fa-eye-slash'></i>");
+                }
+                else{
+                    $('#old_pass').attr('type','password');
+                    $('#show_old_pass').html("<i class='fas fa-eye'></i>");
+                }
+            });
             $('#show_pass').click(function(){
                 if($('#pass').attr('type') === "password"){
                     $('#pass').attr('type','text');
@@ -73,6 +92,15 @@
                     $('#show_con_pass').html("<i class='fas fa-eye'></i>");
                 }
             });
+            function checkPass(){
+                if($('#con_pass').val() === $('#pass').val()){
+                    return true;
+                }
+                else{
+                    alert("Password and Confirm Password are not same");
+                    return false;
+                }
+            }
         </script>
     </body>
 </html>

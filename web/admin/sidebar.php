@@ -32,7 +32,7 @@
         </li>
         <li class="nav-item dropdown border-top p-2">
             <a class="dropdown-toggle nav-link text-primary p-0" data-toggle="collapse" data-target="#professor_collapse" role="button" aria-expanded="false">
-                Manage Professor
+                Manage Professor <i class="fas fa-chalkboard-teacher"></i>
             </a>
             <div class="collapse p-2" id="professor_collapse">
                 <a class="nav-link" href="add_professor.php">Add Professor</a>
