@@ -75,11 +75,12 @@
                 var string = '<form class="p-1" method="post" action="update_medium.php" data-parsley-validate>'+
                            '<input type="hidden" name="id" value="'+id+'">'+
                            '<div class="clearfix">'+
-                            '<input type="text" name="medium" class="form-control w-75 float-left" id="medium" Placeholder="Enter Medium Name" data-parsley-pattern="^[a-zA-Z]+$" data-parsley-error-message="Name doesn\'t contain numbers" value="'+medium_name+'" required maxlength="20">'+
+                            '<input type="text" name="medium" class="form-control w-75 float-left" id="medium_'+id+'" Placeholder="Enter Medium Name" data-parsley-pattern="^[a-zA-Z]+$" data-parsley-error-message="Name doesn\'t contain numbers" value="'+medium_name+'" required maxlength="20">'+
                             '<input type="submit" class="form-control w-25 btn-success" value="Change">'+
                            '</div>'+
                           '</form>';
                 $('#'+td_id).html(string);
+                $('#medium_'+id).focus();
             }
         </script>
     </body>

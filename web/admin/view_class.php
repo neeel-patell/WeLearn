@@ -87,11 +87,12 @@
                 var string = '<form class="p-1" method="post" action="update_class.php" data-parsley-validate>'+
                            '<input type="hidden" name="id" value="'+id+'">'+
                            '<div class="clearfix">'+
-                            '<input type="text" name="class" class="form-control w-75 float-left" id="medium" Placeholder="Enter Medium Name" data-parsley-pattern="^[a-zA-Z]+$" data-parsley-error-message="Name doesn\'t contain numbers" value="'+class_name+'" required maxlength="20">'+
+                            '<input type="text" name="class" class="form-control w-75 float-left" id="class_'+id+'" placeholder="Enter Class Name to add to selected medium" value="'+class_name+'" required maxlength="20">'+
                             '<input type="submit" class="form-control w-25 btn-success" value="Change">'+
                            '</div>'+
                           '</form>';
                 $('#'+td_id).html(string);
+                $('#class_'+id).focus();
             }
         </script>
     </body>

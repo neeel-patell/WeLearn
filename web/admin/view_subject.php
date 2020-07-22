@@ -45,12 +45,12 @@
                         </thead>
                         <tbody id="class_table">
                             
-                            <?php $sr=1; while($row = $subject->fetch_array()){ ?>
+                            <?php $sr=0; while($row = $subject->fetch_array()){ ?>
                             <tr>
-                                <td><?php echo $sr++; ?></td>
-                                <td><?php echo $row['name']; ?></td>
+                                <td><?php echo ++$sr; ?></td>
+                                <td id="td_<?php echo $sr; ?>"><?php echo $row['name']; ?></td>
                                 <td>
-                                    <button class="btn btn-link p-0" onclick="location.href='edit_subject.php?id=<?php echo $row['id']; ?>';">Edit</button> /
+                                    <button class="btn btn-link p-0"  onclick="edit('td_<?php echo $sr; ?>','<?php echo $row['name']; ?>','<?php echo $row['id']; ?>')">Edit</button> /
                                     <button class="btn btn-link p-0" onclick="if(confirm('Do you want to remove <?php echo $row['name']; ?> ?') == true){location.href='remove_main_subject.php?id=<?php echo $row['id']; ?>';}">Remove</button>
                                 </td>
                             </tr>
@@ -61,6 +61,19 @@
                 </div>
             </div>
         </div>
-        <?php include_once 'footer.php' ?>
+        <?php include_once 'footer.php'; ?>
+        <script>
+            function edit(td_id,subject_name,id){
+                var string = '<form class="p-1" method="post" action="update_subject.php" data-parsley-validate>'+
+                           '<input type="hidden" name="id" value="'+id+'">'+
+                           '<div class="clearfix">'+
+                            '<input type="text" name="subject" class="form-control w-75 float-left" id="subject_'+id+'" value="'+subject_name+'" Placeholder="Enter Subject Name" data-parsley-pattern="^[a-zA-Z ]+$" data-parsley-error-message="Name doesn\'t contain numbers" required maxlength="30">'+
+                            '<input type="submit" class="form-control w-25 btn-success" value="Change">'+
+                           '</div>'+
+                          '</form>';
+                $('#'+td_id).html(string);
+                $('#subject_'+id).focus();
+            }
+        </script>
     </body>
 </html>
