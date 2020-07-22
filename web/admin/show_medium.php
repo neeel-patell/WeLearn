@@ -45,10 +45,13 @@
                         </thead>
                         <tbody>
 
-                            <?php $sr = 1; while($row = $medium->fetch_array()){ ?>
+                            <?php $sr = 0; while($row = $medium->fetch_array()){ ?>
                             <tr>
-                                <th scope="row" style="width:10%"><?php echo $sr++; ?></td>
-                                <td><?php echo $row['name']; ?></td>
+                                <th scope="row" style="width:10%"><?php echo ++$sr; ?></td>
+                                <td id="td_<?php echo $sr; ?>">
+                                    <?php echo $row['name']; ?> &nbsp; &nbsp; 
+                                    <button class="btn btn-link p-0" onclick="edit('td_<?php echo $sr; ?>','<?php echo $row['name']; ?>','<?php echo $row['id']; ?>')"><i class="fas fa-pencil-alt"></i></button>
+                                </td>
                                 <td>
                                     <button class="btn btn-link p-0" onclick="if(confirm('Do You want to remove <?php echo $row['name']; ?> and associated classes and student accounts?')){location.href='remove_medium.php?id=<?php echo $row['id']; ?>'}">Remove</button> / 
                                     
@@ -66,6 +69,18 @@
                 </div>
             </div>
         </div>
-        <?php include_once 'footer.php' ?>
+        <?php include_once 'footer.php'; ?>
+        <script>
+            function edit(td_id,medium_name,id){
+                var string = '<form class="p-1" method="post" action="update_medium.php" data-parsley-validate>'+
+                           '<input type="hidden" name="id" value="'+id+'">'+
+                           '<div class="clearfix">'+
+                            '<input type="text" name="medium" class="form-control w-75 float-left" id="medium" Placeholder="Enter Medium Name" data-parsley-pattern="^[a-zA-Z]+$" data-parsley-error-message="Name doesn\'t contain numbers" value="'+medium_name+'" required maxlength="20">'+
+                            '<input type="submit" class="form-control w-25 btn-success" value="Change">'+
+                           '</div>'+
+                          '</form>';
+                $('#'+td_id).html(string);
+            }
+        </script>
     </body>
 </html>
