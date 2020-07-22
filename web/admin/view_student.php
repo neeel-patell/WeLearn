@@ -121,6 +121,7 @@
                             }
                             table = table + string + "</td></tr>";
                         }
+                        document.getElementById("class_select").selectedIndex = 0;
                         $("#search_table").html(table);
                     }
                 });
@@ -152,6 +153,7 @@
                             }
                             table = table + string + "</td></tr>";
                         }
+                        $("#search_textbox").val("");
                         $("#search_table").html(table);
                     }
                 });
