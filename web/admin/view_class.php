@@ -68,7 +68,10 @@
                         for(var i=0; i<data.data.length; i++){
                             var string = "<tr>"+
                                 "<th>"+(i+1)+"</th>"+
-                                "<td>"+data.data[i].name+"</td>"+
+                                "<td id='td_"+(i+1)+"'>"+
+                                    data.data[i].name+" &nbsp; &nbsp; "+
+                                    "<button class='btn btn-link p-0' onclick=\"edit(\'td_"+(i+1)+"\',\'"+data.data[i].name+"\',\'"+data.data[i].id+"\')\"><i class='fas fa-pencil-alt'></i></button>"+
+                                "</td>"+
                                 "<td>"+
                                     "<a href='view_class_subject.php?id="+data.data[i].id+"'>View Subjects</a> / "+
                                     "<a href=''>Remove</a>"+
@@ -80,6 +83,16 @@
                     }
                 });
             });
+            function edit(td_id,class_name,id){
+                var string = '<form class="p-1" method="post" action="update_class.php" data-parsley-validate>'+
+                           '<input type="hidden" name="id" value="'+id+'">'+
+                           '<div class="clearfix">'+
+                            '<input type="text" name="class" class="form-control w-75 float-left" id="medium" Placeholder="Enter Medium Name" data-parsley-pattern="^[a-zA-Z]+$" data-parsley-error-message="Name doesn\'t contain numbers" value="'+class_name+'" required maxlength="20">'+
+                            '<input type="submit" class="form-control w-25 btn-success" value="Change">'+
+                           '</div>'+
+                          '</form>';
+                $('#'+td_id).html(string);
+            }
         </script>
     </body>
 </html>
