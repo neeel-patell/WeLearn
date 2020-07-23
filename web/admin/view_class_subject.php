@@ -63,7 +63,9 @@
                             ?>
                             <tr>
                                 <th><?php echo $sr++; ?></th>
-                                <td class="w-50"><?php echo $subject['name']; ?></td>
+                                <td class="w-50">
+                                    <button class="btn btn-link p-0" onclick="location.href='view_subject_details.php?id=<?php echo $row['id']; ?>'"><?php echo $subject['name']; ?></button>
+                                </td>
                                 <td>
                                     <button class="btn btn-link p-0" onclick="location.href='view_professor_details.php?id=<?php echo $professor['login_id'] ?>'"><?php echo $professor_name['first_name']." ".$professor_name['last_name']; ?></button>
                                 </td>
