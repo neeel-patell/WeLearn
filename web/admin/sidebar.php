@@ -43,6 +43,15 @@
         <li class="nav-item border-top">
             <a href="view_student.php" class="nav-link text-info">View Students <i class="fas fa-user-graduate"></i></a>
         </li>
+        <li class="nav-item dropdown border-top p-2">
+            <a class="dropdown-toggle nav-link text-primary p-0" data-toggle="collapse" data-target="#blog_collapse" role="button" aria-expanded="false">
+                Manage Blog <i class="fas fa-blog"></i>
+            </a>
+            <div class="collapse p-2" id="blog_collapse">
+                <a class="nav-link" href="add_blog.php">Add Blog</a>
+                <a class="nav-link" href="view_blog.php">View Blog</a>
+            </div>
+        </li>
         <li class="nav-item border-top">
             <a href="change_password.php" class="nav-link text-danger">Change Password</a>
         </li>
