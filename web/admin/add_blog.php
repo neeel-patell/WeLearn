@@ -35,7 +35,7 @@
                             <textarea class="form-control" name="description" id="description" style="min-height: 50vh;"></textarea>
                         </div>
                         <div class="container w-50 mt-4">
-                            <button class="form-control btn-success"><i class="fas fa-plus"></i> Add Professor</button>
+                            <button class="form-control btn-success"><i class="fas fa-plus"></i> Add Blog</button>
                         </div>
                     </form>
                 </div>
